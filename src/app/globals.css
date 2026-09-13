@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: #070708;
+  --color-bg-elevated: #0e0e10;
+  --color-fg: #f5f5f4;
+  --color-muted: #a8a29e;
+  --color-amber: #f5a524;
+  --color-amber-deep: #ff8a1f;
+  --color-glass: color-mix(in srgb, #ffffff 6%, transparent);
+  --color-glass-border: color-mix(in srgb, #ffffff 12%, transparent);
+  --font-sans: var(--font-outfit);
+  --font-display: var(--font-syne);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-amber) 35%, transparent);
+    color: #fff;
+  }
+}
+
+@layer utilities {
+  .text-gradient-amber {
+    background: linear-gradient(135deg, #ffe6b0 0%, #f5a524 45%, #ff8a1f 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .glow-amber {
+    box-shadow:
+      0 0 24px color-mix(in srgb, #f5a524 28%, transparent),
+      0 0 80px color-mix(in srgb, #ff8a1f 16%, transparent);
+  }
+
+  .glass {
+    background: linear-gradient(
+      160deg,
+      color-mix(in srgb, #ffffff 8%, transparent),
+      color-mix(in srgb, #ffffff 3%, transparent)
+    );
+    border: 1px solid color-mix(in srgb, #ffffff 12%, transparent);
+    backdrop-filter: blur(18px);
+  }
+
+  .grain {
+    position: relative;
+  }
+
+  .grain::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: soft-light;
+  }
+
+  .rays {
+    background:
+      radial-gradient(
+        ellipse 60% 40% at 50% 0%,
+        color-mix(in srgb, #f5a524 18%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 40% 50% at 70% 20%,
+        color-mix(in srgb, #ff8a1f 10%, transparent),
+        transparent 65%
+      );
+  }
+
+  .animate-float {
+    animation: float 7s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 4.5s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.06);
+  }
+}
