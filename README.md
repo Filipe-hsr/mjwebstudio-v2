@@ -1,35 +1,9 @@
-# MJ Web Studio — marketingový web (Fáze 1)
+# MJ Web Studio — Lumen Dark (Fáze 4)
 
-Dark landing pro [MJ Web Studio](https://mjwebstudio.cz/) — Next.js App Router, TypeScript, Tailwind CSS 4, čeština.
-
-## Spuštění
+Dark luxury kolem animované MJ žárovky. Minimum copy. Maximum whitespace.
 
 ```bash
-cd /workspace/mjwebstudio   # nebo cesta k projektu
-npm install
-npm run dev
+npm install && npm run dev
 ```
 
-Otevři [http://localhost:3000](http://localhost:3000).
-
-## Build
-
-```bash
-npm run build
-npm start
-```
-
-## Stack
-
-- Next.js (App Router) + TypeScript
-- Tailwind CSS 4
-- Fonts: Outfit + Syne
-- Kontakt: `mailto:` / `tel:` (+ jednoduchý formulář bez API)
-
-## Struktura
-
-- `src/app` — layout, stránka, styly
-- `src/components` — sekce landing page
-- `public/` — logo žárovky MJ + Edison ilustrace
-- `assets/` — zdrojové assety
-- `BRIEF-FAZE1.md` — zadání Fáze 1
+Routes: `/` `/prace` `/sluzby` `/cenik` `/proces` `/studio` `/kontakt`

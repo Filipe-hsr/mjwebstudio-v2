@@ -1,23 +1,33 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ctaNav, navLinks } from "@/content/nav";
 
-const links = [
-  { href: "#balicky", label: "Balíčky" },
-  { href: "#proces", label: "Proces" },
-  { href: "#kontakt", label: "Kontakt" },
-];
+function active(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 export function Header() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => setOpen(false), [pathname]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
     document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
@@ -25,113 +35,89 @@ export function Header() {
     };
   }, [open]);
 
-  const close = () => setOpen(false);
-
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-[#070708]/70 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
-        <a href="#top" className="group flex min-w-0 items-center gap-3" onClick={close}>
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition duration-300 ${
+        scrolled
+          ? "border-b border-white/10 bg-bg/80 backdrop-blur-2xl shadow-[0_1px_0_rgba(232,160,58,0.14)]"
+          : "border-b border-transparent bg-bg/45 backdrop-blur-lg"
+      }`}
+    >
+      <div className="mx-auto flex h-[4.25rem] max-w-6xl items-center justify-between px-5 sm:h-[4.5rem] sm:px-8">
+        <Link href="/" className="flex items-center gap-3" aria-label="Domů">
           <Image
-            src="/logo-mj-bulb-hires.png"
-            alt="MJ Web Studio"
-            width={36}
-            height={48}
-            className="h-10 w-auto transition group-hover:brightness-110"
+            src="/logo-mj-mark.png"
+            alt=""
+            width={56}
+            height={56}
+            className="h-12 w-12 object-contain sm:h-14 sm:w-14"
             priority
           />
-          <span className="hidden text-sm font-semibold tracking-[0.18em] text-fg sm:inline">
-            MJ WEB STUDIO
+          <span className="hidden text-[12px] font-medium tracking-[0.14em] text-fg/90 sm:inline">
+            MJ Web Studio
           </span>
-        </a>
-
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Hlavní">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-muted transition hover:text-fg"
-            >
-              {link.label}
-            </a>
-          ))}
+        </Link>
+        <nav className="hidden items-center gap-7 md:flex" aria-label="Hlavní">
+          {navLinks.map((l) => {
+            const isOn = active(pathname, l.href);
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={`relative pb-1 text-[12px] tracking-wide transition hover:text-fg ${
+                  isOn ? "text-fg" : "text-muted"
+                }`}
+                aria-current={isOn ? "page" : undefined}
+              >
+                {l.label}
+                <span
+                  className={`absolute inset-x-0 -bottom-0.5 h-px origin-left bg-filament transition duration-300 ${
+                    isOn ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"
+                  }`}
+                  aria-hidden
+                />
+              </Link>
+            );
+          })}
         </nav>
-
-        <div className="flex items-center gap-2">
-          <a
-            href="#kontakt"
-            className="hidden rounded-full bg-gradient-to-r from-amber to-amber-deep px-4 py-2 text-sm font-semibold text-[#1a1208] shadow-[0_0_24px_rgba(245,165,36,0.25)] transition hover:brightness-110 sm:inline-flex"
+        <div className="flex items-center gap-3">
+          <Link
+            href={ctaNav.href}
+            className="hidden rounded-full border border-filament/35 px-4 py-1.5 text-[12px] text-filament transition hover:border-filament/70 hover:bg-filament/10 sm:inline"
           >
-            Nezávazně poptat
-          </a>
+            {ctaNav.label}
+          </Link>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-fg transition hover:border-amber/40 hover:bg-white/10 md:hidden"
+            className="text-[12px] text-muted md:hidden"
             aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={open ? "Zavřít menu" : "Otevřít menu"}
+            aria-label="Menu"
             onClick={() => setOpen((v) => !v)}
           >
-            <span className="sr-only">{open ? "Zavřít" : "Menu"}</span>
-            <span className="relative block h-3.5 w-4" aria-hidden>
-              <span
-                className={`absolute left-0 top-0 h-0.5 w-4 rounded-full bg-current transition ${
-                  open ? "translate-y-[6px] rotate-45" : ""
-                }`}
-              />
-              <span
-                className={`absolute left-0 top-[6px] h-0.5 w-4 rounded-full bg-current transition ${
-                  open ? "opacity-0" : ""
-                }`}
-              />
-              <span
-                className={`absolute left-0 top-[12px] h-0.5 w-4 rounded-full bg-current transition ${
-                  open ? "-translate-y-[6px] -rotate-45" : ""
-                }`}
-              />
-            </span>
+            {open ? "Zavřít" : "Menu"}
           </button>
         </div>
       </div>
-
       {open && (
         <div
-          className="fixed inset-0 top-16 z-40 md:hidden"
+          className="fixed inset-0 top-[4.25rem] z-40 bg-bg/98 backdrop-blur-xl md:hidden"
           role="dialog"
           aria-modal="true"
-          aria-label="Mobilní navigace"
         >
-          <button
-            type="button"
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-            aria-label="Zavřít pozadí"
-            onClick={close}
-          />
-          <nav
-            id="mobile-nav"
-            className="absolute inset-x-0 bottom-0 top-auto max-h-[70vh] overflow-y-auto rounded-t-3xl border border-white/10 border-b-0 bg-[#0c0c0e]/95 p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] shadow-[0_-20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl"
-            aria-label="Mobilní"
-          >
-            <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-white/20" aria-hidden />
-            <ul className="flex flex-col gap-1">
-              {links.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={close}
-                    className="block rounded-xl px-4 py-3.5 text-base font-medium text-fg transition hover:bg-white/5"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <a
-              href="#kontakt"
-              onClick={close}
-              className="mt-4 flex h-12 items-center justify-center rounded-full bg-gradient-to-r from-amber to-amber-deep text-sm font-semibold text-[#1a1208] glow-amber"
-            >
-              Nezávazně poptat
-            </a>
+          <nav className="flex h-full flex-col justify-center gap-5 px-8" aria-label="Mobilní">
+            {navLinks.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="font-display text-3xl"
+                onClick={() => setOpen(false)}
+              >
+                {l.label}
+              </Link>
+            ))}
+            <Link href={ctaNav.href} className="mt-6 text-filament" onClick={() => setOpen(false)}>
+              {ctaNav.label}
+            </Link>
           </nav>
         </div>
       )}
