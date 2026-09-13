@@ -16,8 +16,8 @@ export default function SluzbyPage() {
         <p className="text-[11px] uppercase tracking-[0.22em] text-filament">Nabídka</p>
         <h1 className="mt-3 font-display text-5xl sm:text-6xl">Služby</h1>
         <p className="mt-4 max-w-2xl text-muted">
-          Od firemního webu po redesign — vždy s jasným cílem, čistým dojmem
-          a texty, které lidi pochopí.
+          Nové weby i autoservis pro ty stávající — redesign, domény, hosting,
+          údržba. Vždy s jasným cílem a čistým dojmem.
         </p>
       </Reveal>
 

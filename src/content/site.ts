@@ -3,7 +3,7 @@ export const site = {
   vp: "Weby, které prodávají.",
   tagline: "Od nápadu po výsledek.",
   value:
-    "Stavíme přehledné weby s charakterem — rychlé, důvěryhodné a připravené získávat poptávky.",
+    "Stavíme nové weby — a zároveň jsme autoservis pro ty stávající: redesign, hosting, domény, údržba.",
   email: "info@mjwebstudio.cz",
   phone: "+420 727 942 839",
   phoneHref: "tel:+420727942839",

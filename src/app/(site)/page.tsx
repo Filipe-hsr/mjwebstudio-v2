@@ -55,11 +55,15 @@ export default function HomePage() {
           <Reveal delay={90}>
             <div className="relative mx-auto w-full max-w-md lg:max-w-none">
               <div
-                className="pointer-events-none absolute inset-[12%] rounded-full bg-[radial-gradient(circle,rgba(232,160,58,0.4),transparent_68%)] blur-3xl bulb-glow"
+                className="pointer-events-none absolute inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(232,160,58,0.55),transparent_65%)] blur-3xl bulb-glow"
                 aria-hidden
               />
               <div
-                className="pointer-events-none absolute -right-[5%] top-[10%] h-36 w-36 rounded-full bg-[radial-gradient(circle,rgba(255,138,31,0.28),transparent_70%)] blur-2xl light-leak"
+                className="pointer-events-none absolute inset-[22%] rounded-full bg-[radial-gradient(circle,rgba(255,138,31,0.35),transparent_70%)] blur-2xl filament-shimmer"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute -right-[5%] top-[10%] h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(255,138,31,0.32),transparent_70%)] blur-2xl light-leak"
                 aria-hidden
               />
               <Image

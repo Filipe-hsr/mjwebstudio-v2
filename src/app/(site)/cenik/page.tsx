@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import { packages } from "@/content/packages";
+import { glossary, packages } from "@/content/packages";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Ceník",
-  description: "Mini 4 990 · Starter 9 990 · Business 19 990 Kč.",
+  description: "Mini 4 990 · Starter 9 990 · Business 19 990 Kč. Doména a hosting v balíčcích.",
 };
 
 export default function CenikPage() {
@@ -19,13 +19,12 @@ export default function CenikPage() {
       <Reveal>
         <h1 className="font-display text-5xl sm:text-6xl">Ceník</h1>
         <p className="mt-4 max-w-xl text-muted">
-          Tři úrovně. Transparentní čísla. Starter je volba většiny klientů —
-          nejlepší poměr rozsahu a dojmu.
+          Tři úrovně. Transparentní čísla. Starter a Business řeší i doménu
+          s hostingem — Mini lze dokoupit zvlášť.
         </p>
       </Reveal>
 
       <div className="mt-16 grid items-stretch gap-5 lg:grid-cols-12 lg:gap-6">
-        {/* Mini — asymmetric */}
         <Reveal className="lg:col-span-3 lg:mt-16" delay={40}>
           <article className="flex h-full flex-col rounded-2xl border border-white/8 bg-white/[0.02] p-7">
             <p className="text-sm text-muted">{mini.name}</p>
@@ -46,7 +45,6 @@ export default function CenikPage() {
           </article>
         </Reveal>
 
-        {/* Starter featured */}
         <Reveal className="lg:col-span-6" delay={80}>
           <article className="relative flex h-full flex-col overflow-hidden rounded-3xl bg-gradient-to-b from-filament/10 to-transparent p-8 rim-filament sm:p-10">
             <div
@@ -80,7 +78,6 @@ export default function CenikPage() {
           </article>
         </Reveal>
 
-        {/* Business */}
         <Reveal className="lg:col-span-3 lg:mt-10" delay={120}>
           <article className="flex h-full flex-col rounded-2xl border border-white/8 bg-white/[0.02] p-7">
             <p className="text-sm text-muted">{business.name}</p>
@@ -102,13 +99,49 @@ export default function CenikPage() {
         </Reveal>
       </div>
 
+      <Reveal delay={80}>
+        <section className="mt-20">
+          <div className="hairline-dot mb-10">
+            <span />
+          </div>
+          <h2 className="font-display text-3xl sm:text-4xl">Co je co</h2>
+          <p className="mt-3 max-w-xl text-sm text-muted">
+            Krátký slovník — ať je jasné, za co platíte a co umíme i samostatně.
+          </p>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            {glossary.map((g) => (
+              <article
+                key={g.title}
+                className="rounded-2xl border border-white/8 bg-white/[0.02] p-6 rim-filament/0 transition hover:border-filament/25"
+                style={{
+                  boxShadow: "0 0 0 1px rgba(232,160,58,0.06), 0 0 28px rgba(232,160,58,0.05)",
+                }}
+              >
+                <h3 className="font-display text-xl text-fg">{g.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{g.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      </Reveal>
+
       <Reveal delay={100}>
-        <p className="mt-12 text-center text-sm text-muted">
-          Finální rozsah domluvíme podle cíle.{" "}
-          <Link href="/kontakt" className="text-filament hover:text-filament-hot">
-            Napsat →
+        <div className="relative mt-14 overflow-hidden rounded-3xl border border-filament/25 px-6 py-10 text-center sm:px-10">
+          <div
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(232,160,58,0.12),transparent_70%)]"
+            aria-hidden
+          />
+          <p className="relative text-sm leading-relaxed text-fg/90 sm:text-base">
+            Potřebujete jen doménu, hosting, nebo servis stávajícího webu? Napište —
+            vyřešíme i bez nového projektu.
+          </p>
+          <Link
+            href="/kontakt"
+            className="shine relative mt-6 inline-flex rounded-full bg-filament px-6 py-3 text-sm font-semibold text-[#1a1208] transition hover:bg-filament-hot"
+          >
+            Napsat
           </Link>
-        </p>
+        </div>
       </Reveal>
     </div>
   );
