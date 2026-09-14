@@ -30,3 +30,36 @@ export const services = [
     body: "Aktualizace, textové změny, rychlá reakce. Nebo krátká konzultace: cíl, rozpočet, doporučený další krok.",
   },
 ] as const;
+
+export const aLaCarte = [
+  {
+    title: "Doména (nákup + nastavení)",
+    price: "od 390 Kč",
+    note: "+ roční poplatek registrátora",
+  },
+  {
+    title: "Hosting (rok, SSL)",
+    price: "1 490 Kč / rok",
+    note: "",
+  },
+  {
+    title: "Konzultace / poradenství",
+    price: "990 Kč / 45 min",
+    note: "",
+  },
+  {
+    title: "Údržba webu",
+    price: "od 990 Kč / měsíc",
+    note: "drobné texty, aktualizace",
+  },
+  {
+    title: "Facelift / menší redesign",
+    price: "od 4 990 Kč",
+    note: "stávající web",
+  },
+  {
+    title: "Free demo",
+    price: "0 Kč",
+    note: "malé demo pro každého klienta",
+  },
+] as const;

@@ -1,13 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import { glossary, packages } from "@/content/packages";
+import { compareRows, packages, type CompareCell } from "@/content/packages";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Ceník",
-  description: "Mini 4 990 · Starter 9 990 · Business 19 990 Kč. Doména a hosting v balíčcích.",
+  description: "Mini 4 990 · Starter 9 990 · Business 19 990 Kč. Srovnání balíčků a free demo.",
 };
+
+function Cell({ value }: { value: CompareCell }) {
+  if (value === "yes") {
+    return <span className="text-filament" aria-label="Ano">✓</span>;
+  }
+  if (value === "no") {
+    return <span className="text-muted/45" aria-label="Ne">—</span>;
+  }
+  return <span className="text-sm text-fg/90">{value}</span>;
+}
 
 export default function CenikPage() {
   const mini = packages[0];
@@ -19,8 +29,8 @@ export default function CenikPage() {
       <Reveal>
         <h1 className="font-display text-5xl sm:text-6xl">Ceník</h1>
         <p className="mt-4 max-w-xl text-muted">
-          Tři úrovně. Transparentní čísla. Starter a Business řeší i doménu
-          s hostingem — Mini lze dokoupit zvlášť.
+          Tři úrovně. Transparentní čísla. Ke každému projektu patří{" "}
+          <span className="text-fg">free menší demo</span>.
         </p>
       </Reveal>
 
@@ -101,27 +111,39 @@ export default function CenikPage() {
 
       <Reveal delay={80}>
         <section className="mt-20">
-          <div className="hairline-dot mb-10">
-            <span />
-          </div>
-          <h2 className="font-display text-3xl sm:text-4xl">Co je co</h2>
-          <p className="mt-3 max-w-xl text-sm text-muted">
-            Krátký slovník — ať je jasné, za co platíte a co umíme i samostatně.
+          <h2 className="font-display text-3xl sm:text-4xl">Srovnání balíčků</h2>
+          <p className="mt-3 text-sm text-muted">
+            Co je v Mini, Starteru a Business — na první pohled.
           </p>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2">
-            {glossary.map((g) => (
-              <article
-                key={g.title}
-                className="rounded-2xl border border-white/8 bg-white/[0.02] p-6 rim-filament/0 transition hover:border-filament/25"
-                style={{
-                  boxShadow: "0 0 0 1px rgba(232,160,58,0.06), 0 0 28px rgba(232,160,58,0.05)",
-                }}
-              >
-                <h3 className="font-display text-xl text-fg">{g.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{g.text}</p>
-              </article>
-            ))}
+          <div className="mt-8 overflow-x-auto rounded-2xl border border-white/10">
+            <table className="w-full min-w-[560px] border-collapse text-left text-sm">
+              <thead>
+                <tr className="border-b border-white/10 bg-white/[0.03]">
+                  <th className="px-4 py-3 font-medium text-muted">Položka</th>
+                  <th className="px-4 py-3 font-medium text-fg">Mini</th>
+                  <th className="px-4 py-3 font-medium text-filament">Starter</th>
+                  <th className="px-4 py-3 font-medium text-fg">Business</th>
+                </tr>
+              </thead>
+              <tbody>
+                {compareRows.map((row) => (
+                  <tr key={row.label} className="border-b border-white/5 last:border-0">
+                    <td className="px-4 py-3 text-muted">{row.label}</td>
+                    <td className="px-4 py-3">
+                      <Cell value={row.mini} />
+                    </td>
+                    <td className="px-4 py-3">
+                      <Cell value={row.starter} />
+                    </td>
+                    <td className="px-4 py-3">
+                      <Cell value={row.business} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
+          <p className="mt-4 text-sm text-muted">Finální rozsah doladíme podle cíle.</p>
         </section>
       </Reveal>
 
@@ -132,14 +154,13 @@ export default function CenikPage() {
             aria-hidden
           />
           <p className="relative text-sm leading-relaxed text-fg/90 sm:text-base">
-            Potřebujete jen doménu, hosting, nebo servis stávajícího webu? Napište —
-            vyřešíme i bez nového projektu.
+            Potřebujete jen doménu, hosting, nebo servis stávajícího webu?
           </p>
           <Link
-            href="/kontakt"
+            href="/sluzby"
             className="shine relative mt-6 inline-flex rounded-full bg-filament px-6 py-3 text-sm font-semibold text-[#1a1208] transition hover:bg-filament-hot"
           >
-            Napsat
+            Samostatné služby →
           </Link>
         </div>
       </Reveal>

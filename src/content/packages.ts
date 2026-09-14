@@ -9,6 +9,7 @@ export const packages = [
       "Responzivní design",
       "Základní SEO",
       "Dodání 1–2 týdny",
+      "Free demo webu",
       "Hosting/doména: není v ceně (lze dokoupit)",
     ],
   },
@@ -25,6 +26,7 @@ export const packages = [
       "Kontaktní formulář",
       "Prioritní doladění + návod",
       "Doména + hosting na 3 roky v ceně",
+      "Free demo webu",
     ],
   },
   {
@@ -37,25 +39,22 @@ export const packages = [
       "Rozšířený obsah a CTA",
       "Prioritní podpora po spuštění",
       "Doména + hosting na 5 let v ceně",
+      "Free demo webu",
     ],
   },
 ] as const;
 
-export const glossary = [
-  {
-    title: "Doména (URL)",
-    text: "Adresa webu (např. vasefirma.cz). Umíme zajistit nákup i správu.",
-  },
-  {
-    title: "Hosting",
-    text: "Kde web běží — rychlost, SSL, dostupnost. Bez toho stránka není online.",
-  },
-  {
-    title: "Nový web",
-    text: "Od nuly: struktura, design, texty, spuštění. Jasný cíl, čistý dojem.",
-  },
-  {
-    title: "Redesign / servis",
-    text: "Stávající web jako v autoservisu: diagnostika, facelift, výkon, údržba.",
-  },
-] as const;
+export type CompareCell = "yes" | "no" | string;
+
+export const compareRows: { label: string; mini: CompareCell; starter: CompareCell; business: CompareCell }[] = [
+  { label: "Jednostránkový web", mini: "yes", starter: "no", business: "no" },
+  { label: "Více sekcí / podstránek", mini: "no", starter: "yes", business: "yes" },
+  { label: "Responzivní design", mini: "yes", starter: "yes", business: "yes" },
+  { label: "Základní SEO", mini: "yes", starter: "yes", business: "yes" },
+  { label: "SEO + analytika", mini: "no", starter: "yes", business: "yes" },
+  { label: "Kontaktní formulář", mini: "no", starter: "yes", business: "yes" },
+  { label: "Doména v ceně", mini: "no", starter: "yes", business: "yes" },
+  { label: "Hosting v ceně", mini: "no", starter: "3 roky", business: "5 let" },
+  { label: "Prioritní podpora", mini: "no", starter: "no", business: "yes" },
+  { label: "Free demo webu", mini: "yes", starter: "yes", business: "yes" },
+];

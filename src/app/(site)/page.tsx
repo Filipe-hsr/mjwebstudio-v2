@@ -88,6 +88,9 @@ export default function HomePage() {
             <p className="mx-auto max-w-2xl text-center text-lg leading-relaxed text-fg/90 sm:text-xl">
               {site.value}
             </p>
+            <p className="mt-4 text-center text-sm text-filament">
+              Ke každému projektu patří free menší demo.
+            </p>
             <div className="mt-8 flex justify-center gap-6 text-sm">
               <Link href="/sluzby" className="text-muted transition hover:text-filament">
                 Služby
@@ -162,7 +165,7 @@ export default function HomePage() {
             <h2 className="relative font-display text-4xl sm:text-5xl">
               Pojďme to rozsvítit.
             </h2>
-            <p className="relative mt-4 text-muted">Ozveme se obvykle do 24 hodin.</p>
+            <p className="relative mt-4 text-muted">Ozveme se vám do 24 hodin.</p>
             <Link
               href="/kontakt"
               className="shine relative mt-8 inline-flex rounded-full bg-filament px-7 py-3 text-sm font-semibold text-[#1a1208] transition hover:bg-filament-hot"

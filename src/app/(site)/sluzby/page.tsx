@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import { services } from "@/content/services";
+import { aLaCarte, services } from "@/content/services";
 
 export const metadata: Metadata = {
   title: "Služby",
-  description: "Firemní weby, landing pages, redesign, SEO, údržba a konzultace.",
+  description:
+    "Nové weby, autoservis, domény, hosting — i samostatně za menší peníze. Free demo.",
 };
 
 export default function SluzbyPage() {
@@ -17,7 +18,7 @@ export default function SluzbyPage() {
         <h1 className="mt-3 font-display text-5xl sm:text-6xl">Služby</h1>
         <p className="mt-4 max-w-2xl text-muted">
           Nové weby i autoservis pro ty stávající — redesign, domény, hosting,
-          údržba. Vždy s jasným cílem a čistým dojmem.
+          údržba. Ke každému projektu patří free menší demo.
         </p>
       </Reveal>
 
@@ -49,6 +50,38 @@ export default function SluzbyPage() {
           </Reveal>
         ))}
       </div>
+
+      <Reveal delay={60}>
+        <section className="mt-20">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-filament">
+            Za menší peníze
+          </p>
+          <h2 className="mt-3 font-display text-3xl sm:text-4xl">
+            Samostatné služby
+          </h2>
+          <p className="mt-3 max-w-xl text-sm text-muted">
+            Doména, hosting, konzultace, údržba — i bez celého balíčku.
+          </p>
+          <div className="mt-10 divide-y divide-white/8 rounded-2xl border border-white/10 overflow-hidden">
+            {aLaCarte.map((item) => (
+              <div
+                key={item.title}
+                className="flex flex-col gap-1 bg-white/[0.02] px-5 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+              >
+                <div>
+                  <p className="font-medium text-fg">{item.title}</p>
+                  {item.note ? (
+                    <p className="mt-1 text-xs text-muted">{item.note}</p>
+                  ) : null}
+                </div>
+                <p className="shrink-0 font-display text-lg text-filament">
+                  {item.price}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </Reveal>
 
       <Reveal>
         <div className="mt-14 flex flex-wrap gap-4">

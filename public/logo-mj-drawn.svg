@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <defs>
+    <linearGradient id="g" x1="20" y1="10" x2="100" y2="110" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFC56A"/>
+      <stop offset="0.45" stop-color="#E8A03A"/>
+      <stop offset="1" stop-color="#C77720"/>
+    </linearGradient>
+  </defs>
+  <!-- imperfect hand circle -->
+  <path d="M58 10c28 1 46 18 48 42 2 28-16 50-44 54-30 4-54-16-56-42-2-24 18-52 52-54z" stroke="url(#g)" stroke-width="2.2" stroke-linecap="round" opacity="0.9"/>
+  <!-- M -->
+  <path d="M28 86c1-22 2-44 3-62 1-2 4-3 6-1l18 38c1 2 3 2 4 0l16-34c1-2 4-2 5 0 2 18 3 40 4 59" stroke="url(#g)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- J hook sharing M stem -->
+  <path d="M78 28c1 18 2 36 2 52 0 12-6 20-18 20-8 0-14-4-16-10" stroke="url(#g)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M74 24h12" stroke="url(#g)" stroke-width="5" stroke-linecap="round"/>
+</svg>

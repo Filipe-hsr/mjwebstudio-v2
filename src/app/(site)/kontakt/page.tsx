@@ -4,7 +4,7 @@ import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Kontakt",
-  description: `Napište ${site.name}. ${site.email} · ${site.phone}`,
+  description: `Napište ${site.name}. Ozveme se vám do 24 hodin. Free demo.`,
 };
 
 export default function KontaktPage() {
@@ -14,8 +14,11 @@ export default function KontaktPage() {
         <Reveal className="lg:col-span-5">
           <p className="text-[11px] uppercase tracking-[0.22em] text-filament">Kontakt</p>
           <h1 className="mt-3 font-display text-5xl sm:text-6xl">Napište nám</h1>
-          <p className="mt-4 max-w-md text-muted">
-            Ozveme se obvykle do 24 hodin. Stačí krátká zpráva o projektu —
+          <p className="mt-4 max-w-md text-lg text-fg/90">
+            Ozveme se vám do 24 hodin.
+          </p>
+          <p className="mt-3 max-w-md text-muted">
+            Ke každému projektu patří free menší demo. Stačí krátká zpráva —
             doporučíme další krok.
           </p>
           <div className="mt-12 space-y-6">
