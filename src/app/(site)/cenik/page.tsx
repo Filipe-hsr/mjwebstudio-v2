@@ -115,11 +115,13 @@ export default function CenikPage() {
           <p className="mt-3 text-sm text-muted">
             Co je v Mini, Starteru a Business — na první pohled.
           </p>
-          <div className="mt-8 overflow-x-auto rounded-2xl border border-white/10">
-            <table className="w-full min-w-[560px] border-collapse text-left text-sm">
+          <div className="mt-8 overflow-x-auto rounded-2xl border border-white/10 [-webkit-overflow-scrolling:touch]">
+            <table className="w-full min-w-[640px] border-collapse text-left text-sm">
               <thead>
                 <tr className="border-b border-white/10 bg-white/[0.03]">
-                  <th className="px-4 py-3 font-medium text-muted">Položka</th>
+                  <th className="sticky left-0 z-10 bg-[#0a0a0b] px-4 py-3 font-medium text-muted shadow-[2px_0_8px_rgba(0,0,0,0.35)]">
+                    Položka
+                  </th>
                   <th className="px-4 py-3 font-medium text-fg">Mini</th>
                   <th className="px-4 py-3 font-medium text-filament">Starter</th>
                   <th className="px-4 py-3 font-medium text-fg">Business</th>
@@ -128,7 +130,9 @@ export default function CenikPage() {
               <tbody>
                 {compareRows.map((row) => (
                   <tr key={row.label} className="border-b border-white/5 last:border-0">
-                    <td className="px-4 py-3 text-muted">{row.label}</td>
+                    <td className="sticky left-0 z-10 bg-[#0a0a0b] px-4 py-3 text-muted shadow-[2px_0_8px_rgba(0,0,0,0.35)]">
+                      {row.label}
+                    </td>
                     <td className="px-4 py-3">
                       <Cell value={row.mini} />
                     </td>
@@ -143,6 +147,9 @@ export default function CenikPage() {
               </tbody>
             </table>
           </div>
+          <p className="mt-2 text-xs text-muted md:hidden">
+            Posuňte tabulku do strany →
+          </p>
           <p className="mt-4 text-sm text-muted">Finální rozsah doladíme podle cíle.</p>
         </section>
       </Reveal>

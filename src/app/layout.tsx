@@ -20,11 +20,36 @@ export const metadata: Metadata = {
     default: `${site.name} — ${site.vp}`,
     template: `%s · ${site.name}`,
   },
-  description: "Moderní weby od 4 990 Kč. Odpověď do 24 h. Celá ČR.",
+  description:
+    "Moderní weby od 4 990 Kč. Ozveme se vám do 24 hodin. Free demo. Celá ČR.",
   metadataBase: new URL(site.url),
   icons: {
     icon: [{ url: "/icon.png", type: "image/png" }],
     apple: [{ url: "/apple-icon.png", type: "image/png" }],
+  },
+  openGraph: {
+    title: `${site.name} — ${site.vp}`,
+    description:
+      "Stavíme weby, které prodávají. Domény, hosting, redesign. Ozveme se vám do 24 hodin.",
+    url: site.url,
+    siteName: site.name,
+    locale: "cs_CZ",
+    type: "website",
+    images: [
+      {
+        url: "/hero-edison-1x1.png",
+        width: 1200,
+        height: 1200,
+        alt: "MJ Web Studio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — ${site.vp}`,
+    description:
+      "Moderní weby od 4 990 Kč. Ozveme se vám do 24 hodin. Free demo.",
+    images: ["/hero-edison-1x1.png"],
   },
 };
 
